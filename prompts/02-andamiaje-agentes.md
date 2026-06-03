@@ -73,6 +73,61 @@ Crea **exactamente** esta estructura en la raíz del proyecto:
 
 Trabaja **un agente a la vez**, en orden. Cada agente produce artefactos en su carpeta correspondiente y no avanza hasta que el estudiante revise y apruebe.
 
+### Agente 0: DevOps y Control de Versiones → Raíz del proyecto
+
+**Este agente va PRIMERO, antes que cualquier otro.** Su misión es proteger el proyecto desde el minuto cero.
+
+**Tareas obligatorias:**
+1. **Guiar al estudiante para crear el repositorio en GitHub** con el nombre del sistema. Instrucciones:
+   - El repo se crea en la cuenta personal del estudiante (no en la organización IES9018)
+   - Nombre del repo = nombre del sistema (ej: `sistema-gestion-biblioteca`)
+   - Visibilidad: Public
+   - Sin README inicial (lo crea el agente)
+
+2. **Crear el `.gitignore`** adecuado al stack tecnológico elegido (Python, Node, etc.). Asegurar que incluya:
+   - `__pycache__/`, `*.pyc`, `venv/`, `.env` (si es Python)
+   - `node_modules/` (si es Node)
+   - `.vscode/`, `.idea/`, `Thumbs.db`, `.DS_Store`
+   - Archivos de secrets: `.env`, `*.pem`, `secrets.yaml`
+
+3. **Hacer el primer commit de seguridad:**
+   ```bash
+   git add .gitignore
+   git commit -m "chore: configuración inicial del repositorio"
+   ```
+
+4. **Enseñar al estudiante el flujo de ramas:**
+   - `main` = código estable, nunca se trabaja directo ahí
+   - Cada agente tendrá su rama: `feat/agente-01-analista`, `feat/agente-02-arquitecto`, etc.
+   - Crear la primera rama ya: `git checkout -b feat/agente-00-devops`
+
+5. **Explicar el ciclo de trabajo** (breve, sin abrumar):
+   - `git checkout -b feat/agente-NN-nombre` → crear rama
+   - Trabajar → `git add .` → `git commit -m "feat: descripción"`
+   - `git push -u origin feat/agente-NN-nombre`
+   - Abrir Pull Request en GitHub para que el docente revise
+
+6. **Crear el `README.md` inicial** con:
+   - Nombre del proyecto
+   - Objetivo en una frase
+   - Estructura de carpetas (la del andamiaje)
+
+7. **Preguntar al estudiante:** "¿Ya le pasaste el link de tu repo al profesor? La URL es: `https://github.com/TU-USUARIO/nombre-del-sistema`"
+
+**Reglas del Agente 0:**
+- No avances a otro agente hasta que el repo esté creado, el `.gitignore` commiteado y el primer push hecho
+- No escribas código de dominio todavía (eso es para agentes posteriores)
+- Si el estudiante no sabe Git, explicá cada comando antes de ejecutarlo
+- **NUNCA** sugieras `git push --force`
+
+**Output esperado:**
+- `.gitignore`
+- `README.md` inicial
+- Primer commit y push verificados
+- Rama `feat/agente-00-devops` creada
+
+---
+
 ### Agente 1: Analista de Requisitos → `00_REFERENCIAS/`
 - Entrevista al estudiante sobre el proyecto definido
 - Documenta requisitos funcionales y no funcionales
@@ -121,11 +176,13 @@ Trabaja **un agente a la vez**, en orden. Cada agente produce artefactos en su c
 ## 🚦 Reglas de Orquestación
 
 1. **Un agente a la vez.** No despliegues el siguiente hasta que el estudiante revise el output del actual.
-2. **Siempre pregunta antes de escribir código.** Especialmente en los agentes 1 a 6, que son de diseño.
-3. **Cada agente lee el output del anterior.** La trazabilidad es sagrada.
-4. **Documenta cada decisión.** Si hay duda, crea un ADR.
-5. **El estudiante es el PO (Product Owner).** Tú propones, él decide.
-6. **Usa Mermaid para diagramas.** Se renderizan nativamente en GitHub.
+2. **Una rama por agente.** Antes de iniciar cada agente, recordá al estudiante crear su rama: `git checkout -b feat/agente-NN-nombre`. Al terminar, guialo para commit, push y PR.
+3. **Siempre pregunta antes de escribir código.** Especialmente en los agentes 0 a 6, que son de diseño.
+4. **Cada agente lee el output del anterior.** La trazabilidad es sagrada.
+5. **Documenta cada decisión.** Si hay duda, crea un ADR.
+6. **El estudiante es el PO (Product Owner).** Tú propones, él decide.
+7. **Commit atómico al terminar cada agente.** El mensaje debe seguir Conventional Commits: `feat: completa agente NN - descripción`.
+8. **Usa Mermaid para diagramas.** Se renderizan nativamente en GitHub.
 
 ---
 
@@ -136,7 +193,20 @@ Al finalizar cada agente, entrega:
 1. **Resumen** de lo producido (3-5 líneas)
 2. **Lista de archivos** creados/modificados
 3. **Decisiones clave** tomadas (justificadas)
-4. **Próximo paso**: qué agente sigue y qué necesita saber
+4. **Instrucciones Git** para que el estudiante ejecute:
+   ```bash
+   git add .
+   git commit -m "feat: completa agente NN - descripción breve"
+   git push -u origin feat/agente-NN-nombre
+   ```
+   Y recordale abrir el Pull Request con:
+   ```bash
+   gh pr create --base main --title "Agente NN: Nombre" --body "## Qué hice
+   - ...
+   ## Archivos generados
+   - ..."
+   ```
+5. **Próximo paso**: qué agente sigue y qué necesita saber
 
 ---
 

@@ -33,11 +33,12 @@ FASE 0 (SCOUTING)                    FASE 1 (CONSTRUCCIÓN)
 
 ### Paso a paso
 
-1. **Abrí tu terminal** con el CLI de IA que prefieras (opencode, gemini, kimi, etc.)
-2. **Pegá el Prompt 1** → La IA te va a entrevistar para definir tu proyecto
-3. Cuando la IA te diga *"¡Perfecto! Hemos definido claramente el proyecto"*, **copiá el resumen del proyecto** que te dio
-4. **Pegá el Prompt 2** + el resumen → La IA orquesta agentes y genera toda la estructura
-5. **Seguí las instrucciones** de los agentes para construir tu sistema
+1. **Leé** [`flujo-trabajo-github.md`](./flujo-trabajo-github.md) para entender cómo crear tu repo, usar ramas, commits y PRs
+2. **Abrí tu terminal** con el CLI de IA que prefieras (opencode, gemini, kimi, etc.)
+3. **Pegá el Prompt 1** → La IA te va a entrevistar para definir tu proyecto
+4. Cuando la IA te diga *"¡Perfecto! Hemos definido claramente el proyecto"*, **copiá el resumen del proyecto** que te dio
+5. **Pegá el Prompt 2** + el resumen → La IA orquesta agentes y genera toda la estructura
+6. **Seguí las instrucciones** de los agentes para construir tu sistema
 
 ---
 
@@ -46,8 +47,9 @@ FASE 0 (SCOUTING)                    FASE 1 (CONSTRUCCIÓN)
 | Archivo | Contenido |
 |---------|-----------|
 | `README.md` | Esta guía (flujo de trabajo e instrucciones) |
+| `flujo-trabajo-github.md` | **Guía de Git/GitHub**: crear repo, ramas, commits, push, PR, merge |
 | `prompts/01-definicion-proyecto.md` | **Prompt 1**: Fase de scoping y definición |
-| `prompts/02-andamiaje-agentes.md` | **Prompt 2**: Andamiaje universal de agentes IA |
+| `prompts/02-andamiaje-agentes.md` | **Prompt 2**: Andamiaje universal de agentes IA (8 agentes) |
 | `instalacion-herramientas-cli.md` | Guía de instalación de herramientas CLI (opencode, gemini, kimi, etc.) |
 
 ---
